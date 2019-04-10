@@ -1,1 +1,4 @@
 #!/usr/bin/env ruby
+require "./lib/airport_data"
+
+AirportData::CLI.new.call
