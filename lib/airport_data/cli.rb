@@ -9,10 +9,7 @@ class AirportData::CLI
 
   def list_airports
     puts "Airport Data!"
-    puts <<-DOC
-    1. 0J6 - Headland, AL - New Orleans
-    2. ECP - Panama City, FL - New Orleans
-    DOC
+    @airports = AirportData::Airports.today
   end
 
   def goodbye
@@ -20,9 +17,9 @@ class AirportData::CLI
   end
 
   def menu
-    puts "Enter the 3 letter airport identifier you would like for information on, otherwise type exit:"
     input = nil
     while input != "exit"
+    puts "Enter the 3 letter airport identifier you would like for information on, otherwise type exit:"
     input = gets.strip
     case input
     when "0J6"
@@ -31,6 +28,8 @@ class AirportData::CLI
       puts "ECP - Panama City, FL - New Orleans"
     when "list"
       list_airports
+    else
+      puts "Entry not in database. Please retry."
     end
   end
  end
