@@ -1,3 +1,4 @@
+require 'pry'
 class AirportData::Airports
 
   attr_accessor :identifier, :location, :sectional
@@ -9,13 +10,10 @@ class AirportData::Airports
     2. ECP - Panama City, FL - New Orleans
     DOC
 
-  #  airport = self.new
-  #  airport.identifier = "0J6"
-  #  airport.location = "Headland, AL"
-  #  airport.sectional = "New Orleans"
-
-  #  [airport]
-
+    airport = self.new
+    airport.identifier = "0J6"
+    airport
+    binding.pry
   end
 
 end

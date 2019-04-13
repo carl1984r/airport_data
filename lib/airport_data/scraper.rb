@@ -1,0 +1,3 @@
+class AirportData::Scraper
+
+end
