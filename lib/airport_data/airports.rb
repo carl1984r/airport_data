@@ -13,7 +13,6 @@ class AirportData::Airports
     airport = self.new
     airport.identifier = "0J6"
     airport
-    binding.pry
   end
 
 end
