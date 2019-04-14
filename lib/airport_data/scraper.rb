@@ -8,8 +8,9 @@ class AirportData::Scraper
     binding.pry
   end
 
-  #test: doc.css("body table").first.css("tbody tr td font")[0].text.split[0]
-  #test: doc.css("body").last.css("table tbody tr td font")[0].text.split[0]
+  #test: doc.css("body table")[1].css("tbody tr td font")[0].children[0].text
+  #test: doc.css("body table")[0].css("tbody tr td font")[2].children[0].text
+
 
   #state: doc.css("body").first.css("table tbody tr td font")[0].text.split[0]
   #region: doc.css("body").first.css("table tbody tr td font")[0].text.split[1]
