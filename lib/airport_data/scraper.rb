@@ -15,11 +15,10 @@ class AirportData::Scraper
       index[:site_number] = x.css("tbody tr td font")[3].children[2].children.text if x.css("tbody tr td font").any? && x.css("tbody tr td font")[3].respond_to?(:'any?')
       index[:airport_reference] = x.css("tbody tr td font")[4].children[0].children[0].text if x.css("tbody tr td font").any? && x.css("tbody tr td font")[4].respond_to?(:'any?')
       index[:point_coordinates] = x.css("tbody tr td font")[4].children[0].children[2].text if x.css("tbody tr td font").any? && x.css("tbody tr td font")[4].respond_to?(:'any?')
-    #  index[:manager_name] = x.css("tbody tr td font")[5].children.text if x.css("tbody tr td font").any? && x.respond_to?(:'any?')
-    #  index[:address_1] = x.css("tbody tr td font")[6].children[1].text if x.css("tbody tr td font").any? && x.css("tbody tr td font").respond_to?(:'any?')
-    #  index[:address_2] = x.css("tbody tr td font")[6].children[4].children.text if x.css("tbody tr td font").any? && x.css("tbody tr td font")[6].respond_to?(:'any?')
-    #  index[:phone_1] = x.css("tbody tr td font")[9].children[2].text.strip if x.css("tbody tr td font").any? && x.css("tbody tr td font")[9].children[2].respond_to?(:'any?')
-      index[:phone_2] = x.css("tbody tr td font")[9].children[0].text.strip if x.css("tbody tr td font").any? && x.css("tbody tr td font")[9].respond_to?(:'any?')
+      index[:manager_name] = x.css("tbody tr td font")[5].children.text if x.css("tbody tr td font")[5].respond_to?(:'any?')
+      index[:address] = x.css("tbody tr td font")[6].text.gsub("\r\n        ", " - ") if x.css("tbody tr td font")[6].respond_to?(:'any?')
+      index[:phone_1] = x.css("tbody tr td font")[9].text if x.css("tbody tr td font")[9].respond_to?(:'any?') && x.css("tbody tr td font").any?
+      #index[:phone_2] = x.css("tbody tr td font")[9].children[0].text.strip if x.css("tbody tr td font").any? && x.css("tbody tr td font")[9].respond_to?(:'any?')
       arr.push(index)
       #binding.pry
     end
