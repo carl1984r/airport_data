@@ -17,14 +17,13 @@ class AirportData::Scraper
       index[:point_coordinates] = x.css("tbody tr td font")[4].children[0].children[2].text if x.css("tbody tr td font").any? && x.css("tbody tr td font")[4].respond_to?(:'any?')
       index[:manager_name] = x.css("tbody tr td font")[5].children.text if x.css("tbody tr td font")[5].respond_to?(:'any?')
       index[:address] = x.css("tbody tr td font")[6].text.gsub("\r\n        ", " - ") if x.css("tbody tr td font")[6].respond_to?(:'any?')
-      index[:phone_1] = x.css("tbody tr td font")[9].text if x.css("tbody tr td font")[9].respond_to?(:'any?') && x.css("tbody tr td font").any?
-      #index[:phone_2] = x.css("tbody tr td font")[9].children[0].text.strip if x.css("tbody tr td font").any? && x.css("tbody tr td font")[9].respond_to?(:'any?')
+      index[:phone_numbers] = x.css("tbody tr td font")[9].text.scan(/(\(?\d{3}\)?\s?\-?\d{3}.{5})/).uniq  if x.css("tbody tr td font")[9].respond_to?(:'any?') && x.css("tbody tr td font").any?
       arr.push(index)
-      #binding.pry
     end
   arr
   binding.pry
   end
+end
 
   #state: doc.css("body table")[1].css("tbody tr td font")[0].children[0].text
   #region: doc.css("body table")[1].css("tbody tr td font")[0].children[3].children.text
@@ -44,4 +43,3 @@ class AirportData::Scraper
   #phone_2: doc.css("body table")[5].css("tbody tr td font")[9].children[0].text.strip
 
 
-end
