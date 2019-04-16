@@ -1,6 +1,7 @@
 
 class AirportData::Scraper
-
+#https://www.faa.gov/airports/airport_safety/airportdata_5010/menu/contacts.cfm?Region=&District=&State=&County=&City=&Use=&Certification=
+#https://www.faa.gov/airports/airport_safety/airportdata_5010/menu/contacts.cfm?Region=&District=&State=FL&County=&City=&Use=&Certification=
   def self.scrape_airport_data
     arr = []
     doc = Nokogiri::HTML(open("https://www.faa.gov/airports/airport_safety/airportdata_5010/menu/contacts.cfm?Region=&District=&State=FL&County=&City=&Use=&Certification="))
@@ -21,7 +22,6 @@ class AirportData::Scraper
       arr.push(index)
     end
   arr
-  binding.pry
   end
 end
 
