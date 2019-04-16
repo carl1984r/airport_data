@@ -9,8 +9,8 @@ class AirportData::CLI
 
   def list_airports
     puts "Airport Data!"
-    @airports = AirportData::Scraper.scrape_airport_data
-    #@airports = AirportData::Airports.today
+    AirportData::Airports.create_from_scraper
+
   end
 
   def goodbye

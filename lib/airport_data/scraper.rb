@@ -24,6 +24,3 @@ class AirportData::Scraper
   arr
   end
 end
-
-
-
