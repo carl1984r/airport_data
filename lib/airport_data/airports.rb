@@ -29,7 +29,14 @@ def self.create_from_scraper
        m.airport_district_office = x.fetch(:airport_district_office)
        m.city = x.fetch(:city)
        m.facility_name = x.fetch(:facility_name)
-     binding.pry
+       m.location_id = x.fetch(:location_id)
+       m.site_number = x.fetch(:site_number)
+       m.airport_reference = x.fetch(:airport_reference)
+       m.point_coordinates = x.fetch(:point_coordinates)
+       m.manager_name = x.fetch(:manager_name)
+       m.address = x.fetch(:address)
+       m.phone_numbers = x.fetch(:phone_numbers)
+       @@all << m
      end
    end
 
