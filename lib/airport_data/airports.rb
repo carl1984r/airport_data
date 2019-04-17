@@ -19,36 +19,18 @@ class AirportData::Airports
     @address = address
     @phone_numbers = phone_numbers
   end
+
+def self.all
+  @@all
+end
+
 def self.create_from_scraper
-   v = AirportData::Scraper.scrape_airport_data
-   v.each do |x|
-     if x.any?
-       m = self.new
-       m.state = x.fetch(:state)
-       m.region = x.fetch(:region)
-       m.airport_district_office = x.fetch(:airport_district_office)
-       m.city = x.fetch(:city)
-       m.facility_name = x.fetch(:facility_name)
-       m.location_id = x.fetch(:location_id)
-       m.site_number = x.fetch(:site_number)
-       m.airport_reference = x.fetch(:airport_reference)
-       m.point_coordinates = x.fetch(:point_coordinates)
-       m.manager_name = x.fetch(:manager_name)
-       m.address = x.fetch(:address)
-       m.phone_numbers = x.fetch(:phone_numbers)
-       @@all << m
-     end
-   end
-
-    #Return instances of updated airport information.
-    #puts <<-DOC
-    #1. 0J6 - Headland, AL - New Orleans
-    #2. ECP - Panama City, FL - New Orleans
-    #DOC
-
-  #  airport = self.new
-  #  airport.identifier = "0J6"
-  #  airport
-
+  AirportData::Scraper.scrape_airport_data.each do |x|
+      if x.any?
+        m = self.new
+        x.each_pair {|k, v| m.send(("#{k}="), v)}
+        @@all << m
+      end
+    end
   end
 end
