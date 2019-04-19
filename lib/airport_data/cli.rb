@@ -4,7 +4,6 @@ class AirportData::CLI
   def call
     welcome
     build_airports
-    list_airports
     menu
     goodbye
   end
@@ -17,10 +16,6 @@ class AirportData::CLI
 
   def build_airports
     AirportData::Airports.create_from_scraper
-  end
-
-  def list_airports
-    AirportData::Airports.all
   end
 
   def goodbye
@@ -40,8 +35,21 @@ class AirportData::CLI
         when "location_id"
         puts "Enter the location identifier.  Examples: F95, AAF, ECP"
            input_1 = gets.strip
-           v = list_airports.select {|x| x if x.location_id == input_1}.map{|y| y}
-           binding.pry
+           v = AirportData::Airports.all.select {|x| x if x.location_id == input_1}.map{|y| y}
+           v.each do |x|
+             puts "-----------------------------------------------------------"
+             puts "Facility Name:  #{x.facility_name}"
+             puts "Address:  #{x.address}"
+             puts "Manager Name:  #{x.manager_name}"
+             puts "Phone Number(s):  #{x.phone_numbers.flatten[0]}  #{x.phone_numbers.flatten[1]}"
+             puts "Location ID:  #{x.location_id}"
+             puts "Airport District Office:  #{x.airport_district_office}"
+             puts "Airport Reference:  #{x.airport_reference}"
+             puts "Point Coordinates:  #{x.point_coordinates}"
+             puts "Region:  #{x.region}"
+             puts "Site Number:  #{x.site_number}"
+             puts "-----------------------------------------------------------"
+           end
         end
      end
   end
