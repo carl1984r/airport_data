@@ -82,14 +82,14 @@ class AirportData::CLI
            input_2 = gets.strip
            v = AirportData::Airports.all.select {|x| x if x.city == input_2.upcase}.map{|y| y}
            v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
-         when "state"
-            puts ""
-            puts "---------------------------------------------------------------"
-            puts "Enter the name of the state the airport is located in."
-            puts ""
-            puts "Examples: CA, Ak, fl"
-            puts "---------------------------------------------------------------"
-            puts ""
+        when "state"
+           puts ""
+           puts "---------------------------------------------------------------"
+           puts "Enter the name of the state the airport is located in."
+           puts ""
+           puts "Examples: CA, Ak, fl"
+           puts "---------------------------------------------------------------"
+           puts ""
             input_3 = gets.strip
             v = AirportData::Airports.all.select {|x| x if x.state== input_3.upcase}.map{|y| y}
             v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
