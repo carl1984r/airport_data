@@ -40,40 +40,65 @@ class AirportData::CLI
   end
 
   def goodbye
+    puts ""
+    puts "---------------------------------------------------------------"
     puts "Tnanks for using airportdata."
+    puts "---------------------------------------------------------------"
+    puts ""
   end
 
   def menu
     input = nil
     while input != "exit"
-    puts ""
-    puts "-----------------------Airport Data Menu-----------------------"
-    puts "To search airport by location identifier: type 'location_id'"
-    puts "To search airports by city: type 'city'"
-    puts "To search airports by state: type 'state'"
-    puts "To exit program - type 'exit'"
-    puts "---------------------------------------------------------------"
-    puts ""
+      puts ""
+      puts "-----------------------Airport Data Menu-----------------------"
+      puts "To search airport by location identifier: type 'location_id'"
+      puts "To search airports by city: type 'city'"
+      puts "To search airports by state: type 'state'"
+      puts "To exit program - type 'exit'"
+      puts "---------------------------------------------------------------"
+      puts ""
     input = gets.strip
       case input
         when "location_id"
            puts ""
            puts "---------------------------------------------------------------"
-           puts "Enter the location identifier.  Examples: F95, AAF, ECP"
+           puts "Enter the location identifier."
+           puts ""
+           puts "Examples: F95, AAF, ECP"
            puts "---------------------------------------------------------------"
            puts ""
            input_1 = gets.strip
            v = AirportData::Airports.all.select {|x| x if x.location_id == input_1.upcase}.map{|y| y}
-           v.each {|x| display(x)}
+           v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
         when "city"
            puts ""
            puts "---------------------------------------------------------------"
            puts "Enter the name of the city the airport is located in."
+           puts ""
+           puts "Examples: MIAMI, panama city, Miami"
            puts "---------------------------------------------------------------"
            puts ""
            input_2 = gets.strip
            v = AirportData::Airports.all.select {|x| x if x.city == input_2.upcase}.map{|y| y}
-           v.each {|x| display(x)}
+           v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
+         when "state"
+            puts ""
+            puts "---------------------------------------------------------------"
+            puts "Enter the name of the state the airport is located in."
+            puts ""
+            puts "Examples: CA, Ak, fl"
+            puts "---------------------------------------------------------------"
+            puts ""
+            input_3 = gets.strip
+            v = AirportData::Airports.all.select {|x| x if x.state== input_3.upcase}.map{|y| y}
+            v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
+         else
+           puts ""
+           puts "***************************************************************"
+           puts "Invalid entry - please try again."
+           puts "***************************************************************"
+           puts ""
       end
     end
   end
