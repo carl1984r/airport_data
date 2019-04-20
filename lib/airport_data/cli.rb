@@ -88,9 +88,9 @@ class AirportData::CLI
         when "state"
            puts ""
            puts "---------------------------------------------------------------"
-           puts "Enter the name of the state the airport is located in."
+           puts "Enter the state the airport is located in."
            puts ""
-           puts "Examples: CA, AK, FL"
+           puts "Examples: CA, AK, FL, NY"
            puts "---------------------------------------------------------------"
            puts ""
              input_3 = gets.strip
