@@ -4,7 +4,7 @@ class AirportData::Scraper
 #https://www.faa.gov/airports/airport_safety/airportdata_5010/menu/contacts.cfm?Region=&District=&State=FL&County=&City=&Use=&Certification=
   def self.scrape_airport_data
     arr = []
-    doc = Nokogiri::HTML(open("https://www.faa.gov/airports/airport_safety/airportdata_5010/menu/contacts.cfm?Region=&District=&State=FL&County=&City=&Use=&Certification="))
+    doc = Nokogiri::HTML(open("https://www.faa.gov/airports/airport_safety/airportdata_5010/menu/contacts.cfm?Region=&District=&State=&County=&City=&Use=&Certification="))
     doc.css("body table").each do |x|
       index = {}
       index[:state] = x.css("tbody tr td font")[0].children[0].text if x.css("tbody tr td font").any?
