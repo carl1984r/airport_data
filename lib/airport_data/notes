@@ -1,0 +1,5 @@
+#git clone git@github.com:carl1984r/airport_data.git
+#cd airport_data/ #Folder to work with.
+#git add . #Add changes - stage them.
+#git commit -m "Message:  What was updated."
+#git push #Push data to github.
