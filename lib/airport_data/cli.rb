@@ -74,6 +74,7 @@ class AirportData::CLI
              input_1 = gets.strip
              v = AirportData::Airports.all.select {|x| x if x.location_id == input_1.upcase}.map{|y| y}
              v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{v.count}"
         when "city"
            puts ""
            puts "---------------------------------------------------------------"
@@ -85,6 +86,7 @@ class AirportData::CLI
              input_2 = gets.strip
              v = AirportData::Airports.all.select {|x| x if x.city == input_2.upcase}.map{|y| y}
              v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{v.count}"
         when "state"
            puts ""
            puts "---------------------------------------------------------------"
@@ -96,6 +98,7 @@ class AirportData::CLI
              input_3 = gets.strip
              v = AirportData::Airports.all.select {|x| x if x.state == input_3.upcase}.map{|y| y}
              v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{v.count}"
         when "ado"
            puts ""
            puts "---------------------------------------------------------------"
@@ -107,6 +110,7 @@ class AirportData::CLI
              input_4 = gets.strip
              v = AirportData::Airports.all.select {|x| x if x.airport_district_office == input_4.upcase}.map{|y| y}
              v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{v.count}"
          when "exit"
            break
          else
