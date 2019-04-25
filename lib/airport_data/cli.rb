@@ -1,14 +1,18 @@
 #CLI Controller
+
 class AirportData::CLI
 
   def call
+
     welcome
     build_airports
     menu
     goodbye
+
   end
 
   def welcome
+
     puts ""
     puts "==============================================================="
     puts "Welcome to Airport Data!  Please wait for the program to update"
@@ -18,9 +22,11 @@ class AirportData::CLI
     puts "its territories. Data is provided by the FAA."
     puts "==============================================================="
     puts ""
+
   end
 
   def display(x)
+
     puts ""
     puts "-----------------------------------------------------------"
     puts "Facility Name:  #{x.facility_name}"
@@ -35,23 +41,31 @@ class AirportData::CLI
     puts "Site Number:  #{x.site_number}"
     puts "-----------------------------------------------------------"
     puts ""
+
   end
 
   def build_airports
+
     AirportData::Airports.create_from_scraper
+
   end
 
   def goodbye
+
     puts ""
     puts "---------------------------------------------------------------"
     puts "Tnanks for using airportdata."
     puts "---------------------------------------------------------------"
     puts ""
+
   end
 
   def menu
+
     input = nil
-    while input != "-3.14"
+
+    while input != "exit"
+
       puts ""
       puts "-----------------------Airport Data Menu-----------------------"
       puts "To search airports by location identifier: type 'location_id'"
@@ -61,33 +75,44 @@ class AirportData::CLI
       puts "To exit program - type 'exit'"
       puts "---------------------------------------------------------------"
       puts ""
+
     input = gets.strip
+
       case input
+
         when "location_id"
+
            puts ""
            puts "---------------------------------------------------------------"
            puts "Enter the location identifier."
            puts ""
-           puts "Examples: SFO, AAF, ECP"
+           puts "Examples: LAX, AAF, ECP"
            puts "---------------------------------------------------------------"
            puts ""
-             input_1 = gets.strip
-             v = AirportData::Airports.all.select {|x| x if x.location_id == input_1.upcase}.map{|y| y}
-             v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
-             puts "Total matches: #{v.count}"
+
+             location_id_input = gets.strip
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.location_id == location_id_input.upcase}.map{|y| y}
+             selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{selected_airports.count}"
+
         when "city"
+
            puts ""
            puts "---------------------------------------------------------------"
            puts "Enter the name of the city the airport is located in."
            puts ""
-           puts "Examples: Miami, San Francisco, New York"
+           puts "Examples: Los Angeles, Orlando, New York"
            puts "---------------------------------------------------------------"
            puts ""
-             input_2 = gets.strip
-             v = AirportData::Airports.all.select {|x| x if x.city == input_2.upcase}.map{|y| y}
-             v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
-             puts "Total matches: #{v.count}"
+
+             city_input = gets.strip
+
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.city == city_input.upcase}.map{|y| y}
+             selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{selected_airports.count}"
+
         when "state"
+
            puts ""
            puts "---------------------------------------------------------------"
            puts "Enter the state the airport is located in."
@@ -95,11 +120,15 @@ class AirportData::CLI
            puts "Examples: CA, AK, FL, NY"
            puts "---------------------------------------------------------------"
            puts ""
-             input_3 = gets.strip
-             v = AirportData::Airports.all.select {|x| x if x.state == input_3.upcase}.map{|y| y}
-             v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
-             puts "Total matches: #{v.count}"
+
+             state_input = gets.strip
+
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.state == state_input.upcase}.map{|y| y}
+             selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{selected_airports.count}"
+
         when "ado"
+
            puts ""
            puts "---------------------------------------------------------------"
            puts "Enter the name of the airport district office."
@@ -107,18 +136,25 @@ class AirportData::CLI
            puts "Examples: ORL, SFO, LAX"
            puts "---------------------------------------------------------------"
            puts ""
-             input_4 = gets.strip
-             v = AirportData::Airports.all.select {|x| x if x.airport_district_office == input_4.upcase}.map{|y| y}
-             v.count > 0 ? (v.each {|x| display(x)}) : (puts "No airports found per entry - please try again.")
-             puts "Total matches: #{v.count}"
+
+             ado_input = gets.strip
+
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.airport_district_office == ado_input.upcase}.map{|y| y}
+             selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{selected_airports.count}"
+
          when "exit"
+
            break
+
          else
+
            puts ""
            puts "***************************************************************"
            puts "Invalid entry - please try again."
            puts "***************************************************************"
            puts ""
+
       end
     end
   end
