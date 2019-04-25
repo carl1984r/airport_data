@@ -6,6 +6,7 @@ class AirportData::Airports
   @@all = []
 
   def initialize
+
     @state = state
     @region = region
     @airport_district_office = airport_district_office
@@ -18,18 +19,26 @@ class AirportData::Airports
     @manager_name = manager_name
     @address = address
     @phone_numbers = phone_numbers
+
   end
 
-def self.all
-  @@all
-end
+  def self.all
+
+    @@all
+
+  end
+
 
 def self.create_from_scraper
-  AirportData::Scraper.scrape_airport_data.each do |x|
-      if x.any?
-        m = self.new
-        x.each_pair {|k, v| m.send(("#{k}="), v)}
-        @@all << m
+
+  AirportData::Scraper.scrape_airport_data.each do |airport_hash|
+
+      if airport_hash.any?
+
+        airport_instance = self.new
+        airport_hash.each_pair {|key, value| airport_instance.send(("#{key}="), value)}
+        @@all << airport_instance
+
       end
     end
   end
