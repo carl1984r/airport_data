@@ -91,7 +91,7 @@ class AirportData::CLI
            puts ""
 
              location_id_input = gets.strip
-             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.location_id == location_id_input.upcase}.map{|y| y}
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.location_id == location_id_input.upcase}
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
 
@@ -107,7 +107,7 @@ class AirportData::CLI
 
              city_input = gets.strip
 
-             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.city == city_input.upcase}.map{|y| y}
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.city == city_input.upcase}
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
 
@@ -123,7 +123,7 @@ class AirportData::CLI
 
              state_input = gets.strip
 
-             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.state == state_input.upcase}.map{|y| y}
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.state == state_input.upcase}
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
 
@@ -139,7 +139,7 @@ class AirportData::CLI
 
              ado_input = gets.strip
 
-             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.airport_district_office == ado_input.upcase}.map{|y| y}
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.airport_district_office == ado_input.upcase}
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
 
