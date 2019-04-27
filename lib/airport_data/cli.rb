@@ -71,6 +71,7 @@ class AirportData::CLI
       puts "To search airports by location identifier: type 'location_id'"
       puts "To search airports by city: type 'city'"
       puts "To search airports by state or territory: type 'state'"
+      puts "To search airports by city AND state or territory: type 'city_and_state'"
       puts "To search airports by airport district office: type 'ado'"
       puts "To exit program - type 'exit'"
       puts "---------------------------------------------------------------"
@@ -124,6 +125,32 @@ class AirportData::CLI
              state_input = gets.strip
 
              selected_airports = AirportData::Airports.all.select {|airport| airport if airport.state == state_input.upcase}
+             selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
+             puts "Total matches: #{selected_airports.count}"
+
+        when "city_and_state"
+
+           puts ""
+           puts "---------------------------------------------------------------"
+           puts "Enter the city the airport is located in."
+           puts ""
+           puts "Examples: Los Angeles, Anchorage, Orlando"
+           puts "---------------------------------------------------------------"
+           puts ""
+
+             city_input = gets.strip
+
+           puts ""
+           puts "---------------------------------------------------------------"
+           puts "Enter the state the airport is located in."
+           puts ""
+           puts "Examples: CA, AK, FL"
+           puts "---------------------------------------------------------------"
+           puts ""
+
+             state_input = gets.strip
+
+             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.state == state_input.upcase && airport.city == city_input.upcase}
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
 
