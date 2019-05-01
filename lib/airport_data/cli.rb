@@ -92,6 +92,7 @@ class AirportData::CLI
            puts ""
 
              location_id_input = gets.strip
+
              selected_airports = AirportData::Airports.location_id(location_id_input)
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
@@ -107,6 +108,7 @@ class AirportData::CLI
            puts ""
 
              city_input = gets.strip
+
              selected_airports = AirportData::Airports.city(city_input)
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
@@ -122,6 +124,7 @@ class AirportData::CLI
            puts ""
 
              state_input = gets.strip
+
              selected_airports = AirportData::Airports.state(state_input)
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
@@ -148,7 +151,7 @@ class AirportData::CLI
 
              state_input = gets.strip
 
-             selected_airports = AirportData::Airports.all.select {|airport| airport if airport.state == state_input.upcase && airport.city == city_input.upcase}
+             selected_airports = AirportData::Airports.city_and_state(city_input, state_input)
              selected_airports.count > 0 ? (selected_airports.each {|airport| display(airport)}) : (puts "No airports found per entry - please try again.")
              puts "Total matches: #{selected_airports.count}"
 
