@@ -11,6 +11,26 @@ class AirportData::Airports
 
   end
 
+def self.location_id(location_id_input)
+  all.select {|airport| airport.location_id == location_id_input.upcase}
+end
+
+def self.city(city_input)
+  all.select {|airport| airport.city == city_input.upcase}
+end
+
+def self.state(state_input)
+  all.select {|airport| airport.state == state_input.upcase}
+end
+
+def self.city_and_state(city_input, state_input)
+  all.select {|airport| airport.state == state_input.upcase && airport.city == city_input.upcase}
+end
+
+def self.ado(ado_input)
+  all.select {|airport| airport.airport_district_office == ado_input.upcase}
+end
+
 
 def self.create_from_scraper
 
